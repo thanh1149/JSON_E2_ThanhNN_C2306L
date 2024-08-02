@@ -14,14 +14,24 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CategoryController implements Initializable {
-    @FXML private TableColumn<Category, Integer> cid;
-    @FXML private TableColumn<Category, String> cname;
-    @FXML private TableColumn<Category, String> cdescription;
-    @FXML private TextField txtName;
-    @FXML private TextArea txtDescription;
-    @FXML private Button btnNewCategory;
-    @FXML private Button btnEditCategory;
-    @FXML private TableView<Category> tableCategory = new TableView<Category>();
+    @FXML
+    private TableColumn<Category, Integer> cid;
+    @FXML
+    private TableColumn<Category, String> cname;
+    @FXML
+    private TableColumn<Category, String> cdescription;
+    @FXML
+    private TextField txtName;
+    @FXML
+    private TextArea txtDescription;
+    @FXML
+    private Button btnNewCategory;
+    @FXML
+    private Button btnEditCategory;
+    @FXML
+    private Button btnDeleteCategory;
+    @FXML
+    private TableView<Category> tableCategory = new TableView<Category>();
     private ObservableList<Category> categories;
 
     @Override
@@ -31,10 +41,11 @@ public class CategoryController implements Initializable {
         tableCategory.setEditable(true);
         tableCategory.getColumns().get(0).setVisible(true);
 //        cid.setText("ID");
-        cid.setCellValueFactory(new PropertyValueFactory<Category,Integer>("id"));
-        cname.setCellValueFactory(new PropertyValueFactory<Category,String>("name"));
-        cdescription.setCellValueFactory(new PropertyValueFactory<Category,String>("description"));
+        cid.setCellValueFactory(new PropertyValueFactory<Category, Integer>("id"));
+        cname.setCellValueFactory(new PropertyValueFactory<Category, String>("name"));
+        cdescription.setCellValueFactory(new PropertyValueFactory<Category, String>("description"));
         tableCategory.setItems(categories);
+        tableCategory.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showCategoryDetails(newValue));
 
         //add new category
         btnNewCategory.setOnAction(new EventHandler<ActionEvent>() {
@@ -56,11 +67,38 @@ public class CategoryController implements Initializable {
         btnEditCategory.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Category getCategory = tableCategory.getSelectionModel().getSelectedItem();
+                if (getCategory != null) {
+                    getCategory.setName(txtName.getText());
+                    getCategory.setDescription(txtDescription.getText());
+                    try {
+                        CategoryStatement.update(getCategory);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        //delete category
+        btnDeleteCategory.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
 
             }
         });
     }
 
+    private void showCategoryDetails(Category category) {
+        if (category != null) {
+            // Hiển thị chi tiết category trong các TextField
+            txtName.setText(category.getName());
+            txtDescription.setText(category.getDescription());
+        } else {
+            txtName.clear();
+            txtDescription.clear();
+        }
 
 
+    }
 }

@@ -28,11 +28,11 @@ public class CategoryStatement {
 
     public static void update(Category category){
         try {
-            String sql = "UPDATE  `tblcategory SET cat_name = ?, cat_description = ? WHERE id = ?";
+            String sql = "UPDATE tblcategory SET cat_name = ?, cat_description = ? WHERE id = ?";
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setInt(1,category.getId());
             pst.setString(2, category.getName());
             pst.setString(3, category.getDescription());
+            pst.setInt(1,category.getId());
             pst.execute();
         }catch (Exception e){
             e.printStackTrace();

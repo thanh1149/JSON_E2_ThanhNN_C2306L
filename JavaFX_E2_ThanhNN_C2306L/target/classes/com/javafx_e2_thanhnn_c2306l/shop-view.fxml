@@ -2,49 +2,49 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.javafx_e2_thanhnn_c2306l.Controller.CategoryController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.javafx_e2_thanhnn_c2306l.Controller.CategoryController">
     <top>
         <MenuBar>
             <Menu text="File">
-                <MenuItem text="New"/>
-                <MenuItem text="Open"/>
-                <SeparatorMenuItem/>
-                <MenuItem text="Exit"/>
+                <MenuItem text="New" />
+                <MenuItem text="Open" />
+                <SeparatorMenuItem />
+                <MenuItem text="Exit" />
             </Menu>
             <Menu text="Edit">
-                <MenuItem text="Cut"/>
-                <MenuItem text="Copy"/>
-                <MenuItem text="Paste"/>
+                <MenuItem text="Cut" />
+                <MenuItem text="Copy" />
+                <MenuItem text="Paste" />
             </Menu>
             <Menu text="Help">
-                <MenuItem text="About"/>
+                <MenuItem text="About" />
             </Menu>
         </MenuBar>
     </top>
     <center>
-        <SplitPane>
+        <SplitPane dividerPositions="0.5">
             <items>
                 <VBox>
-                    <TableView fx:id="tableCategory">
+                    <TableView fx:id="tableCategory" prefHeight="400.0" prefWidth="251.0">
                         <columns>
-                            <TableColumn fx:id="cid" text="ID"/>
-                            <TableColumn fx:id="cname" text="Name"/>
-                            <TableColumn fx:id="cdescription" text="Description"/>
+                            <TableColumn fx:id="cid" text="ID" />
+                            <TableColumn fx:id="cname" text="Name" />
+                            <TableColumn fx:id="cdescription" prefWidth="213.59999694824216" text="Description" />
                         </columns>
                     </TableView>
                 </VBox>
                 <VBox>
-                    <TitledPane text="Add new Category" collapsible="false">
+                    <TitledPane collapsible="true" text="Add new Category">
                         <VBox>
-                            <TextField fx:id="txtName" promptText="Enter Category Name"/>
-                            <TextArea fx:id="txtDescription" promptText="Enter Category Description"/>
+                            <TextField fx:id="txtName" promptText="Enter Category Name" />
+                            <TextArea fx:id="txtDescription" promptText="Enter Category Description" />
                         </VBox>
                     </TitledPane>
                     <HBox alignment="CENTER_RIGHT">
-                        <Button fx:id="btnNewCategory" text="Create New Category"/>
-                        <Button fx:id="btnEditCategory" text="Edit Category"/>
+                        <Button fx:id="btnNewCategory" text="Create New Category" />
+                        <Button fx:id="btnEditCategory" text="Edit Category" />
+                        <Button fx:id="btnDeleteCategory" text="Delete Category" />
                     </HBox>
                 </VBox>
             </items>
