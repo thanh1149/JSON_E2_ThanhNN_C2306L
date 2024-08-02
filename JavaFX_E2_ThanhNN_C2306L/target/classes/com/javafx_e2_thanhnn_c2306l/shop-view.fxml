@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.javafx_e2_thanhnn_c2306l.Controller.CategoryController">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="New"/>
+                <MenuItem text="Open"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Exit"/>
+            </Menu>
+            <Menu text="Edit">
+                <MenuItem text="Cut"/>
+                <MenuItem text="Copy"/>
+                <MenuItem text="Paste"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="About"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <SplitPane>
+            <items>
+                <VBox>
+                    <TableView fx:id="tableCategory">
+                        <columns>
+                            <TableColumn fx:id="cid" text="ID"/>
+                            <TableColumn fx:id="cname" text="Name"/>
+                            <TableColumn fx:id="cdescription" text="Description"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+                <VBox>
+                    <TitledPane text="Add new Category" collapsible="false">
+                        <VBox>
+                            <TextField fx:id="txtName" promptText="Enter Category Name"/>
+                            <TextArea fx:id="txtDescription" promptText="Enter Category Description"/>
+                        </VBox>
+                    </TitledPane>
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button fx:id="btnNewCategory" text="Create New Category"/>
+                        <Button fx:id="btnEditCategory" text="Edit Category"/>
+                    </HBox>
+                </VBox>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>
