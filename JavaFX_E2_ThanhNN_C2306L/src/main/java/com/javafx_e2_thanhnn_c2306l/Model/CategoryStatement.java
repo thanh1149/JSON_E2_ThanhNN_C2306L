@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 public class CategoryStatement {
     private static final Connection conn = MySQLConnection.getConnection();
+    private static  ObservableList<Category> categoryList = FXCollections.observableArrayList();
 
     public static void insert(Category category){
         try {
@@ -27,7 +28,7 @@ public class CategoryStatement {
     }
 
     public static void update(Category category){
-        ObservableList<Category> categoryList = FXCollections.observableArrayList();
+//        ObservableList<Category> categoryList = FXCollections.observableArrayList();
         try {
             String sql = "UPDATE tblcategory SET cat_name = ?, cat_description = ? WHERE id = ?";
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -49,18 +50,21 @@ public class CategoryStatement {
     }
 
     public static void delete(Category category){
+//        ObservableList<Category> categoryList = FXCollections.observableArrayList();
         try {
             String sql = "DELETE FROM tblcategory WHERE id = ?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setInt(1,category.getId());
             pst.executeUpdate();
+
+            categoryList.removeIf(c -> c.getId() == category.getId());
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
 
     public static ObservableList<Category> getAll(){
-        ObservableList<Category> categoryList = FXCollections.observableArrayList();
+//        ObservableList<Category> categoryList = FXCollections.observableArrayList();
         try {
             String sql = "SELECT * FROM tblcategory";
             PreparedStatement pst = conn.prepareStatement(sql);

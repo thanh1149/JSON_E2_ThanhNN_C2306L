@@ -85,14 +85,18 @@ public class CategoryController implements Initializable {
         btnDeleteCategory.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                Category getCategory = tableCategory.getSelectionModel().getSelectedItem();
+                if(getCategory != null){
+                    CategoryStatement.delete(getCategory);
+                    tableCategory.refresh();
+                }
             }
         });
+
     }
 
     private void showCategoryDetails(Category category) {
         if (category != null) {
-            // Hiển thị chi tiết category trong các TextField
             txtName.setText(category.getName());
             txtDescription.setText(category.getDescription());
         } else {
