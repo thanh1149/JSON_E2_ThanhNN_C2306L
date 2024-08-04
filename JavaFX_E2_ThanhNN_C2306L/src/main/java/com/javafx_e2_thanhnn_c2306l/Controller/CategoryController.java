@@ -73,6 +73,7 @@ public class CategoryController implements Initializable {
                     getCategory.setDescription(txtDescription.getText());
                     try {
                         CategoryStatement.update(getCategory);
+                        tableCategory.refresh();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

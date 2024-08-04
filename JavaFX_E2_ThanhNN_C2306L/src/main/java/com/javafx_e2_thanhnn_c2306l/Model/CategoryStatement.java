@@ -27,13 +27,22 @@ public class CategoryStatement {
     }
 
     public static void update(Category category){
+        ObservableList<Category> categoryList = FXCollections.observableArrayList();
         try {
             String sql = "UPDATE tblcategory SET cat_name = ?, cat_description = ? WHERE id = ?";
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(2, category.getName());
-            pst.setString(3, category.getDescription());
-            pst.setInt(1,category.getId());
+            pst.setString(1, category.getName());
+            pst.setString(2, category.getDescription());
+            pst.setInt(3,category.getId());
             pst.execute();
+
+            categoryList.stream()
+                    .filter(c -> c.getId() == category.getId()).findFirst()
+                    .ifPresent(c ->{
+                        c.setName(category.getName());
+                        c.setDescription(category.getDescription());
+                    });
+
         }catch (Exception e){
             e.printStackTrace();
         }
