@@ -1,6 +1,6 @@
 package com.javafx_e2_thanhnn_c2306l.Entity;
 
-public class Category {
+public class Category{
     private int id;
     private String name;
     private String description;
