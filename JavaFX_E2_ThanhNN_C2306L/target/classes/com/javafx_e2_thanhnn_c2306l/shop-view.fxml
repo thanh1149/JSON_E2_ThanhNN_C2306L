@@ -26,6 +26,10 @@
         <SplitPane dividerPositions="0.5">
             <items>
                 <VBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <TextField fx:id="txtSearch" promptText="Search by Category Name" />
+                        <Button fx:id="btnSearch" text="Search"/>
+                    </HBox>
                     <TableView fx:id="tableCategory" prefHeight="400.0" prefWidth="251.0">
                         <columns>
                             <TableColumn fx:id="cid" text="ID" />

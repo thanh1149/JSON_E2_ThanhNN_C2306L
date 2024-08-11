@@ -2,6 +2,7 @@ package com.javafx_e2_thanhnn_c2306l.Controller;
 
 import com.javafx_e2_thanhnn_c2306l.Entity.Category;
 import com.javafx_e2_thanhnn_c2306l.Model.CategoryStatement;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,10 +31,12 @@ public class CategoryController implements Initializable {
     private Button btnEditCategory;
     @FXML
     private Button btnDeleteCategory;
+    @FXML private TextField txtSearch;
+    @FXML private Button btnSearch;
     @FXML
     private TableView<Category> tableCategory = new TableView<Category>();
     private ObservableList<Category> categories;
-    private CategoryStatement categoryStatement = new CategoryStatement();
+    private final CategoryStatement categoryStatement = new CategoryStatement();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,6 +96,24 @@ public class CategoryController implements Initializable {
                 }
             }
         });
+
+        btnSearch.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String searchText = txtSearch.getText();
+                if (searchText != null && !searchText.isEmpty()) {
+                    ObservableList<Category> searchResults = CategoryStatement.findByName(searchText);
+                    if (searchResults.isEmpty()){
+                        tableCategory.setItems(FXCollections.observableArrayList());
+                    }else {
+                        tableCategory.setItems(searchResults);
+                    }
+                } else {
+                    tableCategory.setItems(FXCollections.observableArrayList());
+                }
+            }
+        });
+
 
     }
 

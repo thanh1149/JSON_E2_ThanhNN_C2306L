@@ -113,4 +113,26 @@ public class CategoryStatement implements IService<Category,Integer> {
         }
     }
 
+
+    //method search by name
+    public static ObservableList<Category> findByName(String name){
+        ObservableList<Category> searchResult = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT id,cat_name,cat_description FROM tblcategory WHERE cat_name LIKE ? ";
+            PreparedStatement pst =  conn.prepareStatement(sql);
+            pst.setString(1,"%" + name + "%");
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+               int id = rs.getInt("id");
+               String cat_name = rs.getString("cat_name");
+               String cat_des = rs.getString("cat_description");
+               Category category = new Category(id,cat_name,cat_des);
+                searchResult.add(category);
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return searchResult;
+    }
+
 }
