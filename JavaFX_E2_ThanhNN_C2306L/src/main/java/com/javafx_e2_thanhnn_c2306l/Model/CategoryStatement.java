@@ -122,7 +122,7 @@ public class CategoryStatement implements IService<Category,Integer> {
             PreparedStatement pst =  conn.prepareStatement(sql);
             pst.setString(1,"%" + name + "%");
             ResultSet rs = pst.executeQuery();
-            if(rs.next()){
+            while (rs.next()){
                int id = rs.getInt("id");
                String cat_name = rs.getString("cat_name");
                String cat_des = rs.getString("cat_description");

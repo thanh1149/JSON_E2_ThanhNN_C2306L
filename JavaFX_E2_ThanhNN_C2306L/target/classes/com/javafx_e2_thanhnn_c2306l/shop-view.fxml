@@ -3,7 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx_e2_thanhnn_c2306l.Controller.CategoryController">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.javafx_e2_thanhnn_c2306l.Controller.CategoryController"
+            stylesheets="@category-style.css" >
     <top>
         <MenuBar>
             <Menu text="File">
